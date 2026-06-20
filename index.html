@@ -486,8 +486,8 @@ footer p{font-family:'Inter','Noto Sans SC','PingFang SC','STHeiti','Microsoft Y
   <div class="divider-group"><div class="divider-line" style="width:80px;margin:0 auto 6px"></div><div class="divider-line" style="width:40px;margin:0 auto"></div></div>
   <div class="film-wrapper">
     <div class="film-frame">
-      <!-- Bilibili 视频嵌入 -->
-      <iframe src="https://player.bilibili.com/player.html?bvid=BV1rfjE6YEmi&page=1"
+      <!-- Bilibili embed -->
+      <iframe src="https://player.bilibili.com/player.html?bvid=BV1rfjE6YEmi&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;as_wide=1"
         style="width:100%;height:100%;position:absolute;top:0;left:0;border:0"
         scrolling="no" frameborder="no" allowfullscreen="true">
       </iframe>
@@ -533,10 +533,14 @@ window.addEventListener("load", () => {
     document.body.classList.add("loaded");
   }, 600);
 });
-
-
+// Safety fallback - force hide loader after 5s
+setTimeout(() => {
+  var l = document.getElementById("loader");
+  if (l && !l.classList.contains("hidden")) {
+    l.classList.add("hidden");
+    document.body.classList.add("loaded");
   }
-});
+}, 5000);
 
 // NAVBAR
 window.addEventListener("scroll", () => {
